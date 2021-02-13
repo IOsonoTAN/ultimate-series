@@ -1,5 +1,5 @@
 import { FastifyServerOptions } from 'fastify'
-import * as mongoose from 'mongoose'
+import mongoose = require('mongoose')
 import buildApp from './src/app'
 import config from './src/config'
 

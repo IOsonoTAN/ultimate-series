@@ -12,7 +12,7 @@ const config = {
     uri: process.env.MONGO_URI || 'mongodb://localhost/ultimate'
   },
   secret: {
-    accessToken: process.env.SECRET_ACCESS_TOKEN
+    accessToken: process.env.SECRET_ACCESS_TOKEN || ''
   }
 }
 

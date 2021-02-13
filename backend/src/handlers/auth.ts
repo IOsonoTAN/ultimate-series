@@ -7,6 +7,8 @@ import {
 import Users from '../models/Users'
 import { UsersSchemaWithDocument } from '../models/Users/schema'
 import { FastifyRequest } from 'fastify'
+import customError from '../utils/custom-error'
+import { AuthJWTError } from '../errors/auth'
 
 export const handleLogin = async (request: AuthLoginBodyRequest): Promise<AuthLoginBodyResponse> => {
   const { username, password } = request.body
@@ -38,6 +40,10 @@ export const handleRegister = async (request: AuthRegisterBodyRequest): Promise<
 
 export const handleRefreshToken = async (request: FastifyRequest): Promise<AuthRefreshTokenResponse> => {
   const { userId } = request
+
+  if (!userId) {
+    return customError(AuthJWTError)
+  }
 
   const accessToken = Users.generateAccessToken(userId)
   const response: AuthRefreshTokenResponse = {
