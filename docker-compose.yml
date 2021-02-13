@@ -1,0 +1,36 @@
+version: '3'
+
+networks:
+  ultimate-network:
+
+services:
+  ultimate-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: ultimate-backend
+    container_name: ultimate-backend
+    restart: always
+    env_file: ./backend/.env
+    environment:
+      ENV: production
+      PORT: 4000
+    ports:
+      - 4000:4000
+    networks:
+      - ultimate-network
+
+  # ultimate-frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   links:
+  #     - ultimate-backend
+  #   image: ultimate-frontend
+  #   container_name: ultimate-frontend
+  #   restart: always
+  #   env_file: ./frontend/.env.local
+  #   environment:
+  #     REACT_APP_API_BASEURL: ultimate-backend
+  #   ports:
+  #     - 3000:3000
