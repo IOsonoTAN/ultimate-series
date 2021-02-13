@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "start": "node ./dist/index",
+    "build": "tsc",
     "dev": "nodemon index.ts"
   },
   "keywords": [],
