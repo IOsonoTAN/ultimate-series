@@ -7,7 +7,7 @@ import { CustomError } from './utils/custom-error'
 
 declare module 'fastify' {
   interface FastifyRequest {
-    userId?: string
+    userId: string
   }
 }
 
