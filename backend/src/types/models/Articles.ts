@@ -11,8 +11,9 @@ export interface ArticlePicturesSchema {
 export interface ArticlesSchema {
   title: string
   description: string
+  author: string
   categories?: string[]
   tags?: string[]
   pictures?: ArticlePicturesSchema[]
-  author: string
+  status?: string
 }

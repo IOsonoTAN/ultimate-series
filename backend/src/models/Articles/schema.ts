@@ -16,12 +16,6 @@ const articlesSchema = new Schema<ArticlesSchemaWithDocument>({
     type: String,
     required: true
   },
-  categories: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'ArticleCategories'
-    }
-  ],
   tags: [String],
   pictures: [
     {
@@ -38,6 +32,11 @@ const articlesSchema = new Schema<ArticlesSchemaWithDocument>({
     type: Schema.Types.ObjectId,
     ref: 'Users',
     required: true
+  },
+  status: {
+    type: String,
+    default: 'active',
+    enum: ['active', 'deleted']
   }
 }, {
   collection,

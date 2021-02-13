@@ -1,4 +1,4 @@
-import { createNewArticle, getArticleById, getArticles, ArticlesSchemaWithDocument } from '../models/Articles'
+import { createNewArticle, getArticleById, getArticles, updateArticleById, removeArticleById, ArticlesSchemaWithDocument } from '../models/Articles'
 import { ArticlesSchema } from '../types/models/Articles'
 import { ArticleCreateNewRequestBody, ArticleGetByIdRequest, ArticleUpdate } from '../types/handlers/article'
 
@@ -25,11 +25,34 @@ export const handleGetArticleById = async (request: ArticleGetByIdRequest): Prom
 
 export const handleGetArticles = async (): Promise<ArticlesSchema[]> => getArticles()
 
-export const handleUpdateArticle = async (request: ArticleUpdate) => {
+export const handleUpdateArticle = async (request: ArticleUpdate): Promise<string> => {
+  const { userId } = request
+  const { articleId } = request.params
+  const { title, description, categories, tags, status } = request.body
+
+  const result = await updateArticleById(articleId, {
+    title,
+    description,
+    categories,
+    tags,
+    status,
+    author: userId
+  })
+
+  return result
+}
+
+export const handleDeleteArticle = async (request: ArticleGetByIdRequest): Promise<string> => {
+  const { articleId } = request.params
+
+  const result = await removeArticleById(articleId)
+
+  return result
 }
 
 export default {
   handleCreateNewArticle,
   handleGetArticleById,
-  handleGetArticles
+  handleGetArticles,
+  handleUpdateArticle
 }

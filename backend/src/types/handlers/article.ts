@@ -7,6 +7,7 @@ export type ArticleCreateNewRequestBody = FastifyRequest<{
     categories?: string[]
     tags?: string[]
     pictures?: object[]
+    status?: string
   }
 }>
 
