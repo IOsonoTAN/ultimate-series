@@ -4,7 +4,7 @@ import { UsersSchema } from '../../types/models/Users'
 import { AuthLoginBodyResponse } from '../../types/handlers/auth'
 import Users, { UsersSchemaWithDocument } from './schema'
 import customError from '../../utils/custom-error'
-import authErrors from '../../errors/auth'
+import authErrors, { AuthJWTError } from '../../errors/auth'
 import config from '../../config'
 
 const generateHashPassword = (password: string): string => {
@@ -35,8 +35,8 @@ const mapUserResponseObject = (userId: string, user: UsersSchemaWithDocument, ac
   const response: AuthLoginBodyResponse = {
     id: userId,
     username: user.username,
-    name: user.name,
-    surname: user.surname,
+    name: user.name || '',
+    surname: user.surname || '',
     email: user.email,
     accessToken
   }
@@ -57,7 +57,7 @@ export const userLogin = async (username: string, password: string): Promise<Aut
     username
   })
   if (!user) {
-    customError({
+    return customError({
       ...authErrors.AuthInvalidUsername,
       data: {
         testModeAgain: true
@@ -75,6 +75,9 @@ export const userLogin = async (username: string, password: string): Promise<Aut
 
 export const getUserById = async (userId: string): Promise<AuthLoginBodyResponse> => {
   const user = await Users.findById(userId)
+  if (!user) {
+    return customError(AuthJWTError)
+  }
 
   const response: AuthLoginBodyResponse = mapUserResponseObject(userId, user)
 

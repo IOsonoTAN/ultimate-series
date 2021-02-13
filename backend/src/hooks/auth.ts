@@ -6,9 +6,9 @@ import config from '../config'
 import { AccessTokenDecoded } from '../types/hooks/auth'
 
 const validateHeadersAuth = (request: FastifyRequest): string => {
-  const authToken: string = request.headers['authorization']
+  const authToken: string | undefined = request.headers['authorization']
   if (!authToken) {
-    customError(authErrors.AuthMissingHeaders)
+    return customError(authErrors.AuthMissingHeaders)
   }
 
   const accessToken = authToken.split(' ')[1]
@@ -28,7 +28,7 @@ export const verifyAccessToken = async (request: FastifyRequest): Promise<boolea
 
     return true
   } catch (error) {
-    customError(authErrors.AuthJWTError)
+    return customError(authErrors.AuthJWTError)
   }
 }
 
