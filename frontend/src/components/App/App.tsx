@@ -13,6 +13,9 @@ import DomainsAbout from '../../domains/About'
 import DomainsLogin from '../../domains/Login'
 import DomainsLogout from '../../domains/Logout'
 
+import DomainsArticlesList from '../../domains/Articles/List'
+import DomainsArticlesAddEdit from '../../domains/Articles/AddEdit'
+
 function App() {
   const { Header, Content, Footer } = Layout
 
@@ -27,7 +30,9 @@ function App() {
         <Route exact path="/" component={DomainsHome} />
         <Route exact path="/about" component={DomainsAbout} />
         <Route exact path="/login" component={DomainsLogin} />
-        <PrivateRoute exact path="/user/me" component={DomainsAbout} />
+        <PrivateRoute exact path="/articles" component={DomainsArticlesList} />
+        <PrivateRoute exact path="/articles/add-edit/:id?" component={DomainsArticlesAddEdit} />
+        <PrivateRoute exact path="/users/me" component={DomainsAbout} />
         <PrivateRoute exact path="/logout" component={DomainsLogout} />
       </Switch>
     </Content>

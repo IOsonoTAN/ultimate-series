@@ -15,7 +15,8 @@ const Navbar: React.FC = () => {
       <If condition={isLoggedIn}>
         <Then>
           <Space split={<Divider type="vertical" />}>
-            <Link to="/user/me" component={Typography.Link}>Me</Link>
+            <Link to="/articles" component={Typography.Link}>Articles</Link>
+            <Link to="/users/me" component={Typography.Link}>Me</Link>
             <Link to="/logout" component={Typography.Link}>Logout</Link>
           </Space>
         </Then>
