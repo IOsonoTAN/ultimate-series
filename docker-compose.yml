@@ -20,17 +20,18 @@ services:
     networks:
       - ultimate-network
 
-  # ultimate-frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   links:
-  #     - ultimate-backend
-  #   image: ultimate-frontend
-  #   container_name: ultimate-frontend
-  #   restart: always
-  #   env_file: ./frontend/.env.local
-  #   environment:
-  #     REACT_APP_API_BASEURL: ultimate-backend
-  #   ports:
-  #     - 3000:3000
+  ultimate-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    links:
+      - ultimate-backend
+    image: ultimate-frontend
+    container_name: ultimate-frontend
+    restart: always
+    environment:
+      REACT_APP_BACKEND_URL: ultimate-backend
+    ports:
+      - 3000:3000
+    networks:
+      - ultimate-network

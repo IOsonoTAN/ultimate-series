@@ -1,4 +1,5 @@
 import axios from 'axios'
+import config from '../config'
 
 export interface Article {
   _id: string
@@ -15,7 +16,7 @@ export interface Article {
 
 export const requestArticles = async (conditions: object = {}, accessToken: string): Promise<Article[]> => {
   const data: Article[] = await axios
-    .get('http://localhost:4000/articles', {
+    .get(`${config.backendUrl}/articles`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
@@ -27,7 +28,7 @@ export const requestArticles = async (conditions: object = {}, accessToken: stri
 
 export const requestDeleteArticleById = async (articleId: string, accessToken: string): Promise<string> => {
   const data: string = await axios
-    .delete(`http://localhost:4000/articles/${articleId}`, {
+    .delete(`${config.backendUrl}/articles/${articleId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
@@ -39,7 +40,7 @@ export const requestDeleteArticleById = async (articleId: string, accessToken: s
 
 export const requestGetArticleById = async (articleId: string, accessToken: string): Promise<Article> => {
   const data: Article = await axios
-    .get(`http://localhost:4000/articles/${articleId}`, {
+    .get(`${config.backendUrl}/articles/${articleId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
@@ -51,7 +52,7 @@ export const requestGetArticleById = async (articleId: string, accessToken: stri
 
 export const requestPatchArticleById = async (articleId: string, doc: Article, accessToken: string): Promise<string> => {
   const data: string = await axios
-    .patch(`http://localhost:4000/articles/${articleId}`, doc, {
+    .patch(`${config.backendUrl}/articles/${articleId}`, doc, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
@@ -63,7 +64,7 @@ export const requestPatchArticleById = async (articleId: string, doc: Article, a
 
 export const requestCreateArticle = async (doc: Article, accessToken: string): Promise<Article> => {
   const data = await axios
-    .post(`http://localhost:4000/articles`, doc, {
+    .post(`${config.backendUrl}/articles`, doc, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }

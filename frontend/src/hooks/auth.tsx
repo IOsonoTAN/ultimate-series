@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { LoginResponse } from '../types/hooks/auth'
+import config from '../config'
 
 const handleResponseError = (error: any) => {
   if (error?.response?.data?.error) {
@@ -10,7 +11,7 @@ const handleResponseError = (error: any) => {
 
 export const requestAuthLogin = async (username: string, password: string): Promise<LoginResponse> => {
   const data: LoginResponse = await axios
-    .post('http://localhost:4000/auth/login', {
+    .post(`${config.backendUrl}/auth/login`, {
       username,
       password
     })
@@ -22,7 +23,7 @@ export const requestAuthLogin = async (username: string, password: string): Prom
 
 export const requestRefreshToken = async (token: string): Promise<LoginResponse> => {
   const data: LoginResponse = await axios
-    .post('http://localhost:4000/auth/refresh-token', {}, {
+    .post(`${config.backendUrl}/auth/refresh-token`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       }

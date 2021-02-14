@@ -17,4 +17,4 @@ mongoose.connect(config.mongodb.uri, {
 mongoose.connection.on('error', (error) => app.log.error(error))
 mongoose.connection.once('open', () => app.log.info('MongoDB has been connected'))
 
-app.listen(config.port)
+app.listen(config.port, '::')
