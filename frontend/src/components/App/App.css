@@ -3,3 +3,9 @@
   margin: 0 auto;
   padding: 30px;
 }
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}

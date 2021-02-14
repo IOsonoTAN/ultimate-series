@@ -9,7 +9,7 @@ import './List.css'
 
 const { Title } = Typography
 
-const DomainArticlesList = () => {
+const DomainsArticlesList = () => {
   const [articles, setArticles] = useState<Article[]>([])
   const { accessToken } = useContext(UserContext)
   const { needLoadArticles, setNeedLoadArticles } = useContext(ArticleContext)
@@ -39,8 +39,8 @@ const DomainArticlesList = () => {
         <Col span={18}>
           <Title level={1} className="no-margin">Articles</Title>
         </Col>
-        <Col span={6}>
-          <Button type="primary" block={true}>
+        <Col span={6} className="text-right">
+          <Button type="primary">
             <Link to="/articles/add-edit">Create New</Link>
           </Button>
         </Col>
@@ -57,4 +57,4 @@ const DomainArticlesList = () => {
   )
 }
 
-export default DomainArticlesList
+export default DomainsArticlesList
