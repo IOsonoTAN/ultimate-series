@@ -3,7 +3,7 @@ import { ArticlesSchema } from '../../types/models/Articles'
 import articleErrors from '../../errors/article'
 import customError from '../../utils/custom-error'
 
-export {
+export type {
   ArticlesSchemaWithDocument
 }
 

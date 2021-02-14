@@ -1,12 +1,20 @@
 import React, { useState, useEffect, createContext } from 'react'
 
-type UserContextProps = {
+interface UserObject {
+  id?: string
+  name?: string
+  surname?: string
+  email?: string
+  username?: string
+  accessToken?: string
+}
+interface UserContextProps {
   isLoggedIn: boolean
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
   accessToken: string
   setAccessToken: React.Dispatch<React.SetStateAction<string>>
-  user: object
-  setUser: React.Dispatch<React.SetStateAction<object>>
+  user: UserObject
+  setUser: React.Dispatch<React.SetStateAction<UserObject>>
 }
 
 const UserContext = createContext({} as UserContextProps)
@@ -22,7 +30,7 @@ export const UserProvider: React.FC = (props) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isLoggedInLocal ? JSON.parse(isLoggedInLocal) : false)
   const [accessToken, setAccessToken] = useState<string>(accessTokenInLocal ? JSON.parse(accessTokenInLocal) : '')
-  const [user, setUser] = useState<object>(userInLocal ? JSON.parse(userInLocal) : {})
+  const [user, setUser] = useState<UserObject>(userInLocal ? JSON.parse(userInLocal) : {})
 
   useEffect(() => {
     localStorage.setItem(isLoggedInKey, JSON.stringify(isLoggedIn))

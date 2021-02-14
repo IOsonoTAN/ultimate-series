@@ -19,7 +19,7 @@ const DomainsLogin: React.FC = () => {
       setUser(data)
       setIsLoggedIn(true)
       message.success('Login Successful')
-      return history.push('/user/me')
+      return history.push('/users/me')
     } catch (error) {
       setAccessToken('')
       setUser({})

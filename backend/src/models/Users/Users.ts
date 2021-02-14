@@ -24,7 +24,7 @@ const comparePassword = (password: string, existsPassword: string): boolean => {
 
 export const generateAccessToken = (userId: string): string => {
   const token = jwt.sign({}, config.secret.accessToken, {
-    expiresIn: 60 * 10,
+    expiresIn: 60 * 60,
     audience: String(userId)
   })
 
