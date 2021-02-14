@@ -1,0 +1,16 @@
+.article-item {
+  padding: 20px;
+  border-bottom: 1px solid #EEE;
+  padding-bottom: 19px;
+  color: #666;
+  transition: ease .3s;
+}
+
+.article-item:hover {
+  background: rgb(247, 246, 246);
+  color: #333
+}
+
+.article-item:last-child {
+  border: 0;
+}

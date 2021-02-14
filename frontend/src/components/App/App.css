@@ -1,5 +1,11 @@
 .content-app {
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 30px;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
 }

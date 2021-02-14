@@ -1,9 +1,11 @@
 import React from 'react'
 
 import { UserProvider } from './UserContext'
+import { ArticleProvider } from './ArticleContext'
 
 const providers = [
-  UserProvider
+  UserProvider,
+  ArticleProvider
 ]
 
 const ContextProvider = (...components: React.FC[]): React.FC => (
