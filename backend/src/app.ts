@@ -1,4 +1,4 @@
-import fastify, { FastifyServerOptions } from 'fastify'
+import fastify, { FastifyInstance, FastifyServerOptions } from 'fastify'
 import fastifyCors from 'fastify-cors'
 import authRouters from './routers/auth'
 import userRouters from './routers/user'
@@ -11,7 +11,7 @@ declare module 'fastify' {
   }
 }
 
-const buildApp = (options: FastifyServerOptions) => {
+const buildApp = (options: FastifyServerOptions): FastifyInstance => {
   const app = fastify(options)
 
   app.register(fastifyCors)
